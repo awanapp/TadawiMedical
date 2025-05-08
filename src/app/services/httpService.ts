@@ -1,8 +1,11 @@
 import { MedicalData } from '../core/entities/MedicalData';
 import response from './data.json'
 class HttpService {
-
+    
+    
     public async getData(url: string): Promise<MedicalData> {
+        
+      
         try {
             const result = await fetch(url, {
                 method: "GET",
@@ -15,7 +18,7 @@ class HttpService {
             });
 
 
-            return response.data as MedicalData;
+            return (await result.json()).data  as MedicalData;
         } catch (err) {
 
 

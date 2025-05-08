@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { MedicalData } from "../app/core/entities/MedicalData";
+import { MedicalData } from "../app/core/entities/MedicalData"; 
 
 const TadawiTable = ({ sampleData }: { sampleData: MedicalData }) => {
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(1); 
+
   const itemsPerPage = 10;
 
   const pagedData = sampleData.slice(
@@ -36,9 +37,9 @@ const TadawiTable = ({ sampleData }: { sampleData: MedicalData }) => {
           <tr>
             <th className="p-2 m-1"><p>N</p><p>م</p></th>
             <th className="p-2"><p>File Number</p> <p>رقم الملف</p></th>
-            <th className="p-2"><p>Attendance</p><p>الحضور</p></th>
+            <th className="p-2"><p>Clinic</p><p>القسم </p></th>
             <th className="p-2"><p>Insurance Company</p><p>شركة التأمين</p></th>
-            <th className="p-2"><p>Time</p><p>الوقت</p></th>
+            <th className="p-2"><p>Waiing Time</p><p>وقت الانتظار</p></th>
             <th className="p-2"><p>Status</p><p>الحالة</p></th>
           </tr>
         </thead>

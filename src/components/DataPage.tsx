@@ -3,13 +3,18 @@ import MedicalService from "../app/services/medicalSevice";
 import { MedicalData } from "../app/core/entities/MedicalData";
 import TadawiTable from "./TadawiTable";
 import Header from "./Header";
+import queryString from 'query-string';
+
 const DataPage = () => {
     const [data, setData] = useState([] as MedicalData);
-    const [error, setError] = useState('');
-    const fetchData = async () => {
+    const [error, setError] = useState(''); 
+    const parsed = queryString.parse(window.location.search);
+
+        let branchno = parsed.branchno?.toString() ?? "02"; 
+    const fetchData = async (branchno: string | undefined) => {
         try {
 
-            const result = await MedicalService.getData();
+            const result = await MedicalService.getData(branchno);
             setData(result);
 
         } catch (err) {
@@ -17,7 +22,7 @@ const DataPage = () => {
         }
     }
     useEffect(() => {
-        fetchData();
+        fetchData(branchno);
         const interval = setInterval(fetchData, 10000);
         return () => clearInterval(interval)
     }, [])
